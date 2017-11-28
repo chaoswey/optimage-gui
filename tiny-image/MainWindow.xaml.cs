@@ -45,9 +45,7 @@ namespace tiny_image
             if (result == System.Windows.Forms.DialogResult.OK)
             {
                 String sPath = folderDialog.SelectedPath;
-                tbxFolder.Content = sPath;
 
-                
                 DirectoryInfo folder = new DirectoryInfo(sPath);
                 if (folder.Exists)
                 {
