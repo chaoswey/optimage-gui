@@ -1,0 +1,46 @@
+﻿<Window x:Name="tiny_image" x:Class="tiny_image.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:tiny_image"
+        mc:Ignorable="d"
+        ContentRendered="Window_ContentRendered"
+        Title="tiny-image" Height="546.291" Width="683.058" Icon="images/icon.ico">
+    <Grid Name="gridBase" Margin="0,0,0,19">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="337*"/>
+            <ColumnDefinition Width="338*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Name="top" Background="#E7E7E7" HorizontalAlignment="Left" VerticalAlignment="Top" Width="675" Height="55" Grid.ColumnSpan="2">
+            <DockPanel>
+                <Menu DockPanel.Dock="Top">
+                    <MenuItem Header="資料夾" x:Name="Open" Click="BtnSelect_Folder_Click" />
+                    <MenuItem Header="壓縮" x:Name="Btn_Cmpression" Click="Btn_Cmpression_Click" IsEnabled="False" />
+                </Menu>
+            </DockPanel>
+            <Label x:Name="tbxFolder" Margin="0,21,0,0" FontWeight="Bold" HorizontalAlignment="Left" Width="675" />
+        </Grid>
+        <Grid Name="content" VerticalAlignment="Top" Height="433" Margin="0,55,0,0" Grid.ColumnSpan="2">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#E7E7E7" Offset="0"/>
+                    <GradientStop Color="White" Offset="0.6"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <DataGrid x:Name="imgList" HorizontalAlignment="Left" Height="399" Margin="10,10,0,0" VerticalAlignment="Top" Width="655" IsReadOnly="True" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="類型" Binding="{Binding Ext}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="比例" Binding="{Binding Rate, StringFormat={}{0:N2}}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="壓縮前" Binding="{Binding OldSize}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="壓縮後" Binding="{Binding NewSize}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="狀態" Binding="{Binding Status}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="路徑" Binding="{Binding Path}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <ProgressBar x:Name="CmpressionProgressBar" HorizontalAlignment="Left" Height="19" Margin="10,414,0,0" VerticalAlignment="Top" Width="655"/>
+            <TextBlock Text="{Binding ElementName=CmpressionProgressBar, Path=Value, StringFormat={}{0:0}}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="41" TextDecorations="Underline" TextAlignment="Center" RenderTransformOrigin="0.054,0.159" Height="20" Margin="10,414,624,-1" />
+        </Grid>
+    </Grid>
+</Window>
